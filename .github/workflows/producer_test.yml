@@ -16,5 +16,6 @@ jobs:
         with:
           owner: sandeepnara777
           repo: consumer
+          token: ${{ secrets.CONSUMER_ACCESS }}
           event_type: dev-deploy
           client_payload: '{}'
