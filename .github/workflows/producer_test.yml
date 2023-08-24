@@ -1,6 +1,6 @@
 name: ~ reusable workflow ops-tools export api info trigger
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       RUNNER_LABEL:
         type: string
