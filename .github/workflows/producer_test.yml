@@ -2,6 +2,8 @@ name: Trigger API update
 
 on:
   workflow_run:
+    types:
+      - requested
   workflow_dispatch:
 
 jobs:
