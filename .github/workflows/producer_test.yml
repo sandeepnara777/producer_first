@@ -1,21 +1,21 @@
-name: ~ reusable workflow ops-tools export api info trigger
+name: Trigger API update
+
 on:
+  workflow_run:
   workflow_dispatch:
-    inputs:
-      RUNNER_LABEL:
-        type: string
-        default: "ubuntu-latest"
 
 jobs:
-  export-api-info:
+  send_repo_dispatch_event:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Invoke workflow in another repo with inputs
-        uses: adityakar/workflow-dispatcher@v1.0    
+      - uses: actions/github-script@v6
         with:
-          owner: sandeepnara777
-          repo: consumer
-          token: ${{ secrets.CONSUMER_ACCESS }}
-          event_type: dev-deploy
-          client_payload: '{}'
+          github-token: ${{ secrets.CONSUMER_ACCESS }}
+          script: |
+            const result = await github.rest.repos.createDispatchEvent({
+              owner: 'sandeepnara777',
+              repo: 'consumer',
+              event_type: 'dev-deploy',
+              client_payload: {}
+            })
+            console.log(result);
