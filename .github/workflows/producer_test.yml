@@ -35,5 +35,5 @@ jobs:
               owner: 'sandeepnara777',
               repo: 'consumer',
               event_type: 'dev-deploy',
-              client_payload: { 'STAGE': ${{env.STAGE}},'AWS_REGION': ${{env.REGION}}}
+              client_payload: { 'STAGE': ${{ inputs.STAGE }}}
             })
