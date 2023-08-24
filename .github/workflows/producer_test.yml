@@ -12,8 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Invoke workflow in another repo with inputs
-        uses: benc-uk/workflow-dispatch@v1
+        uses: adityakar/workflow-dispatcher
         with:
-          workflow: export_info.yaml
-          repo: sandeepnara777/consumer
-          inputs: '{ "STAGE": "test", "REGION": "ap-east-1" }'
+          owner: sandeepnara777
+          repo: consumer
+          event_type: dev-deploy
+          client_payload: '{}'
