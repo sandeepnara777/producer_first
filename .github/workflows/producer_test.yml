@@ -27,14 +27,13 @@ jobs:
   send_repo_dispatch_event:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v6
-        env:
-          github-token: ${{ secrets.CONSUMER_ACCESS }}
+      - uses: actions/github-script@v6          
         with:
+          github-token: ${{ secrets.CONSUMER_ACCESS }}
           script: |
             github.rest.repos.createDispatchEvent({
               owner: 'sandeepnara777',
               repo: 'consumer',
               event_type: 'dev-deploy',
-              client_payload: {}
+              client_payload: { 'STAGE': ${{env.STAGE}},'AWS_REGION': ${{env.REGION}}
             })
