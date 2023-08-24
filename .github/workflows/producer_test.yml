@@ -11,84 +11,13 @@ on:
       REGION:
         required: true
         type: string
-      API_FILTER:
-        type: string
-      SERVICE_FILTER:
-        type: string
-      STACK_COLOR:
-        type: string
-        default: v1
-      TICKET_NUMBER:
-        type: string
+      
   workflow_dispatch:
     inputs:
       STAGE:
         required: true
-        type: choice
-        options:
-          - dev
-          - qa
-          - test-staging
-      API:
-        required: true
-        type: choice
-        options:
-          - "---"
-          - all
-          - auth
-          - pin
-          - offer
-          - trait
-          - mapping
-          - commerce
-          - purchase
-          - channelmap
-          - smart-mock
-          - partner-owned
-          - internal-device-facing
-          - internal-facing
-          - entitlement
-          - availability
-          - xvp-device
-          - broadband-device
-          - xvp-product
-          - broadband-product
-          - device-activation
-          - notifications
-          - xsp-account
-          - xsp-device
-          - experience-settings
-          - privacy-settings
-          - utility-apis
-          - ivod
       REGION:
         required: true
-        type: choice
-        options:
-          - us-east-1
-          - us-east-2
-          - eu-central-1
-          - eu-west-1
-          - ap-southeast-1
-          - ap-southeast-2
-      API_FILTER:
-        type: string
-        description: "Any API from the list: auth pin offer trait mapping commerce purchase channelmap smart-mock partner-owned internal-facing entitlement availability xvp-device broadband-device xvp-product broadband-product device-activation notifications xsp-account xsp-device experience-settings privacy-settings utility-apis internal-device-facing ivod. Example: 'pin offer'."
-      SERVICE_FILTER:
-        description: "Services: common vector alarms dns elk waf sns sqs databases s3"
-        type: string
-      STACK_COLOR:
-        type: choice
-        default: v1
-        # Inspired by quark colors
-        options:
-          - auto  # Update the oldest of green or blue
-          # `green`` and `blue`` are unavailable for manual selection
-          # to prevent possible operator error.
-          # - green
-          # - blue
-          - v1  # Backward-compatible transition option
-          - red  # Replaces next version
 
 env:
   STAGE: ${{ inputs.STAGE }}
@@ -102,7 +31,6 @@ jobs:
         env:
           github-token: ${{ secrets.CONSUMER_ACCESS }}
         with:
-          github-token: ${{ secrets.CONSUMER_ACCESS }}
           script: |
             github.rest.repos.createDispatchEvent({
               owner: 'sandeepnara777',
