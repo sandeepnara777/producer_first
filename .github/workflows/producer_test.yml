@@ -14,5 +14,5 @@ jobs:
       - name: Trigger other repo workflow
         uses: WaleedAshraf/asyncapi-github-action@v0.0.10
         with:
-          filepath: '../consumer/.github/workflows/export_info.yml'
+          filepath: '../../consumer/.github/workflows/export_info.yml'
 
