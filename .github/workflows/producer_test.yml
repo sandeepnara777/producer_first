@@ -11,15 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Check out repo
-        uses: actions/checkout@v3
+      - name: Invoke workflow in another repo with inputs
+        uses: benc-uk/workflow-dispatch@v1.2.2
         with:
-          repository: sandeepnara777/consumer
-          ref: main
-          # ssh-key: ${{ secrets.CREDS_INFRA_GITHUB_REPOS_GHA_BEANS_PRIVATE_KEY }}
-          path: consumer     
-      - name: Trigger other repo workflow
-        uses: WaleedAshraf/asyncapi-github-action@v0.0.10
-        with:
-          filepath: './consumer/.github/workflows/export_info.yml'
-
+          workflow: export_info.yaml
+          repo: sandeepnara777/consumer
+          inputs: '{ "STAGE": "test", "REGION": "ap-east-1" }'
