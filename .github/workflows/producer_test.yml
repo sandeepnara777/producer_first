@@ -11,10 +11,9 @@ jobs:
         with:
           github-token: ${{ secrets.CONSUMER_ACCESS }}
           script: |
-            const result = await github.rest.repos.createDispatchEvent({
+            github.rest.repos.createDispatchEvent({
               owner: 'sandeepnara777',
               repo: 'consumer',
               event_type: 'dev-deploy',
               client_payload: {}
             })
-            console.log(result);
