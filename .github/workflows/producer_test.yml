@@ -39,4 +39,5 @@ jobs:
         uses: aurelien-baudet/workflow-dispatch@v2.1.1
         with:
           workflow: export_info.yml
+          token: ${{ secrets.CONSUMER }}
           inputs: '{ "STAGE": "dev", "AWS_REGION": "us-east-2" }'
