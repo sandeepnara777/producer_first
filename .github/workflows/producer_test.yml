@@ -3,25 +3,14 @@ name: Trigger API update
 on:
   workflow_call:
     inputs:
-      STAGE:
-        required: true
-        type: string
-      API:
-        type: string
-      REGION:
+      ENV:
         required: true
         type: string
       
   workflow_dispatch:
     inputs:
-      STAGE:
+      ENV:
         required: true
-      REGION:
-        required: true
-
-env:
-  STAGE: ${{ inputs.STAGE }}
-  REGION: ${{ inputs.REGION }}
 
 jobs:
   send_repo_dispatch_event:
@@ -39,5 +28,4 @@ jobs:
       - name: Invoke workflow with inputs
         uses: ./consumer/.github/workflows/export_info.yml
         with:
-          STAGE: ${{ inputs.STAGE }}
-          AWS_REGION: ${{ inputs.REGION }}
+          ENV: ${{ inputs.ENV }}
