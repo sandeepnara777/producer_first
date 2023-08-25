@@ -37,8 +37,7 @@ jobs:
           persist-credentials: false
 
       - name: Invoke workflow with inputs
-        uses: aurelien-baudet/workflow-dispatch@v2.1.1
+        uses: ./consumer/.github/workflows/export_info.yml
         with:
-          workflow: export_info.yml
-          token: ${{ secrets.CONSUMER }}
-          inputs: '{ "STAGE": "dev", "AWS_REGION": "us-east-2" }'
+          STAGE: ${{ inputs.STAGE }}
+          AWS_REGION: ${{ inputs.REGION }}
