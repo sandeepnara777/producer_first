@@ -28,12 +28,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out nested ops-tools
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: sandeepnara777/consumer
           ref: main
           ssh-key: ${{ secrets.CONSUMER }}
           path: consumer
+          persist-credentials: false
 
       - name: Invoke workflow with inputs
         uses: aurelien-baudet/workflow-dispatch@v2.1.1
