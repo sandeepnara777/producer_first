@@ -23,8 +23,6 @@ jobs:
           ref: main
           ssh-key: ${{ secrets.CONSUMER }}
           path: consumer
-          persist-credentials: false
-
       - name: Invoke workflow with inputs
         uses: ./consumer/.github/actions
         with:
