@@ -26,6 +26,6 @@ jobs:
           persist-credentials: false
 
       - name: Invoke workflow with inputs
-        uses: ./consumer/.github/workflows/export_info.yml
+        uses: ./consumer/.github/workflows/test.yml
         with:
           ENV: ${{ inputs.ENV }}
