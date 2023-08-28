@@ -17,13 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out consumer
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: sandeepnara777/consumer
           ref: main
           ssh-key: ${{ secrets.CONSUMER }}
           path: consumer
       - name: Invoke workflow with inputs
-        uses: ./consumer/.github/actions
+        uses: ./consumer/.github/actions/trigger
         with:
           STAGE: 'DEV'
