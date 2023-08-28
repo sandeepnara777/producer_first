@@ -16,7 +16,7 @@ jobs:
   send_repo_dispatch_event:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out nested ops-tools
+      - name: Check out consumer
         uses: actions/checkout@v2
         with:
           repository: sandeepnara777/consumer
