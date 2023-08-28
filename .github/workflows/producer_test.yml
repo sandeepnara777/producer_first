@@ -1,12 +1,6 @@
 name: Trigger API update
 
-on:
-  workflow_call:
-    inputs:
-      ENV:
-        required: true
-        type: string
-      
+on:      
   workflow_dispatch:
     inputs:
       ENV:
@@ -17,13 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Check out consumer
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: sandeepnara777/consumer
           ref: main
           ssh-key: ${{ secrets.CONSUMER }}
           path: consumer
+
       - name: Invoke workflow with inputs
         id: output
         uses: ./consumer/.github/actions/trigger
