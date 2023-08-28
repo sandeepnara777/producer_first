@@ -28,4 +28,4 @@ jobs:
       - name: Invoke workflow with inputs
         uses: ./consumer/.github/actions
         with:
-          ENV: ${{ inputs.ENV }}
+          STAGE: 'DEV'
