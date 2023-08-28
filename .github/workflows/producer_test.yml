@@ -25,6 +25,8 @@ jobs:
           ssh-key: ${{ secrets.CONSUMER }}
           path: consumer
       - name: Invoke workflow with inputs
-        uses: ./consumer/.github/actions/trigger
+        id: output
+        uses: ./producer_first/consumer/.github/actions/trigger
         with:
           STAGE: 'DEV'
+      - run: echo "Simple step"
