@@ -26,6 +26,4 @@ jobs:
       - name: Invoke workflow with inputs
         id: output
         uses: ./.github/actions/trigger
-        with:
-          STAGE: 'DEV'
       - run: echo "Simple step"
