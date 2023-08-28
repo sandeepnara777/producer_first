@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check out consumer
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: sandeepnara777/consumer
           ref: main
