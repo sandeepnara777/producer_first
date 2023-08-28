@@ -26,7 +26,7 @@ jobs:
           path: consumer
       - name: Invoke workflow with inputs
         id: output
-        uses: ./producer_first/consumer/.github/actions/trigger
+        uses: ././consumer/.github/actions/trigger
         with:
           STAGE: 'DEV'
       - run: echo "Simple step"
