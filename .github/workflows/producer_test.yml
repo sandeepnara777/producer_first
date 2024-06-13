@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+env:
+  PR_NUMBER: ${{ github.event.number }}
+  GITHUB_REPO_PATH: sandeepnara777/producer_first
+
 jobs:
   check-commit-message:
     name: Check Commit Message
@@ -18,3 +22,12 @@ jobs:
         with:
           pattern: 'SDN-\d+'
           error: 'Your first line has to contain a commit type like "XMP-number".'
+
+      - name: Set PR Status to failure
+        if: ${{ failure() || cancelled() }}
+        uses: teamniteo/pull_request_status_action@v1.0.0
+        with:
+          pr_number: ${{ env.PR_NUMBER }}
+          state: failure
+          repository: ${{ env.GITHUB_REPO_PATH }}
+          context: commit msg validation failed
