@@ -21,7 +21,7 @@ jobs:
         uses: gsactions/commit-message-checker@v2
         with:
           pattern: 'SDN-\d+'
-          error: 'Your first line has to contain a commit type like "XMP-number".'
+          error: 'Your first line has to contain a commit type like "SDN-number".'
 
       - name: Set PR Status to failure
         if: ${{ failure() || cancelled() }}
