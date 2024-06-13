@@ -1,26 +1,32 @@
-name: Trigger API update
-
-on:      
-  workflow_dispatch:
-    inputs:
-      ENV:
-        required: true
+name: 'Commit Message Check'
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - reopened
+  push:
+    branches:
+      - main
 
 jobs:
-  send_repo_dispatch_event:
+  check-commit-message:
+    name: Check Commit Message
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Check out consumer
-        uses: actions/checkout@v3
+      - name: Check Commit Type
+        uses: gsactions/commit-message-checker@v2
         with:
-          repository: sandeepnara777/consumer
-          ref: main
-          ssh-key: ${{ secrets.CONSUMER }}
-          path: consumer
-
-      - name: Invoke workflow with inputs
-        id: output
-        uses: ./consumer/.github/actions/trigger
-      - run: echo "Simple step"
+          pattern: '\[[^]]+\] .+$'
+          flags: 'gm'
+          error: 'Your first line has to contain a commit type like "[BUGFIX]".'
+      - name: Check for Resolves / Fixes
+        uses: gsactions/commit-message-checker@v2
+        with:
+          pattern: '^.+(Resolves|Fixes): \#[0-9]+$'
+          error: 'You need at least one "Resolves|Fixes: #<issue number>" line.'
